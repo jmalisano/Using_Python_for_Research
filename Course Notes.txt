@@ -1,0 +1,859 @@
+HarvardX – Python for Research
+Week 1
+Interpreted language. No need to link or compile them.
+Interactive mode – runs code one line at a time.
+Standard mode – runs entire code.
+Python – named after Monty Python’s flying circus.
+We use a distribution – core python plus a number of modules. We will use the Anaconda distribution.
+Python 3 – all new standard library improvements on this. Easier to understand / use for beginners.
+
+Objects
+Objects – all data is represented as a certain Object.
+Mutable objects – can be changed / modified after initialising them. 
+Objects – Type, Value, Identity
+	Type – number, string, list
+	Value – data value,
+	Identity – a specific ID number in memory.
+
+Objects have data or functions (attributes) associated with them. 
+Attributes – name of attribute follows name of object. Have the form name.attribute.
+2 types of attributes:
+	Data – Value attached to an object. cat.name=’Sheldon’. Attributes have no parentheses after them.
+	Method – a function attached to an object e.g.  np.array([1,2,3]) Have parentheses after them. E.g x.mean()
+Instance – number of occurrences of a type of object.
+A x= np.array(…) is a type of object. Can have multiple instances of it (multiple np.arrays), which support the same methods – x.mean()  mean() is a method
+
+Modules
+import function
+math module
+math.pi = 3.14………………………………….   is an attribute
+math.sqrt(4) = 2        is a Method
+from math import pi – imports only pi/
+
+name space – the name of the module from which the object comes. different objects might have attributes or methods associated with them. E.g both math and numpy modules have a sqrt function. However, they have different capabilities. np.sqrt(…) can evaluate the sqrts of a sequence of numbers in an array, whereas math.sqrt cannot. 
+The namespace is the module. It is a box  that contains the methods and attributes. E.g numpy is the namespace (can be nicknamed np) which contains all the attributes and methods.
+import – 1. creates a new names space for all objects in the new module. 2. Execute module code within the namespace. 3. Creates a reference name for the module, e.g np.
+dir(variable) or dir(str) / dir(int)….– gives list of methods available for object type
+help(name.method) – gives info on the function. Putting () at the end of the method calls the method, therefore not needed for functions.
+
+Numbers
+Python has 3 types of numbers: Ints, floats, and complex numbers. 
+
+Ints – no size limit in python (lots of bits, unlike C). Unlimited Precision for ints.
+
+_ returns the value of the latest operation
+e.g x*y = a
+_ = a
+_*2 = 2a
+
+Factorial - 3! = 3*2*1 = 6
+math.factorial(3) = 6
+
+Random Choice
+import random
+random.choice([2,44, 55, 66]) – returns a random number from the list. Doesn’t care about the data type. Can also return strings or bools. Because it is a list, you could  mix numbers and strings.
+
+
+
+Expressions and Booleans
+True and False require capitalisation to be recognised as Bools
+not operation negates the value of the operation e.g. not True = False
+8 different comparison operations in Python
+Can compare 2 sequences. Comparison is carried out element wise
+[2,3] == [2,3] = True
+[2,3] is [2,3] = False    the is operator checks if they are the same object. Same contents, different objects.
+2.0 == 2 = True    second object is turned into the same type of object as  the first
+
+Sequences
+A collection of objects ordered by their position
+3 types: Lists, tuples, range objects
+Different types have their own methods.
+Indexing at 0
+Negative index counts from right to left. Think of it as wrapping around the array
+Sequences can be Sliced. Eg.s =[a,b,c,d], s[0:2] is a slice [a, b]
+
+Lists
+Mutable sequences of objects of any type. Usually hold data of one type, but not always
+Strings are immutable
+Lists are mutable
+Lists use [ ]
+nums = [1,2,3]
+nums.append(10) = [1,2,3,10]
+bers = [11, 12, 13]
+nums + bers = [1,2,3,10, 11, 12, 13]  concatenates 2 lists
+can reverse a list order with name.reverse()
+can sort a list of strings in alphabetical order with name.sort(). Overwrites old list
+list sorted(listname) constructs a new list, a duplicate of a listnames that is sorted in order
+name.sort() and name.reverse() are in place methods they return nothing, but overwrite the content in the original list (name).
+
+Tuple
+Immutable sequences, typically with different object types. Cannot append to them!
+A tuple is return when you instruct python to return multiple objects
+Denoted with (…)
+X = 3
+Y = 55
+A = (X, Y) is a tuple. This operation is called tuple packing
+To unpack a tuple:
+	(c1, c2) = a
+	c1 = X = 3
+	c2 = 55
+Can use tuples in for loops.
+z = [(1,2), (3,4)…………]
+for (x, y) in z:
+	print(x)
+it goes over each index in the list, then allows us to work on the units within the tuple. for example x in the example
+c = (2)
+type(c) = Int, not a tuple!
+To make it a tuple
+c = (2,)
+type(c) = tuple
+
+Ranges
+A python object. Immutable sequences.
+Range(5) = (0,5)
+To create a list:
+	List(range[5]) = [0,1, 2, 3, 4]
+	Turning them into lists creates extra memory usuage, especially with large ranges.
+
+Strings
+Immutable sequences of characters. Can be in “ ” or ‘’ or ‘ ’ ‘’’
+Can slice them like a list
+P = hello
+P[0] = h
+P[-2:] = lo
+Polymorphism means that what an operator does depends on what type of object it is applied on
+E,g 12 + 12 is addition
+But ‘str’ + ‘ing’ is concatenation
+3*P = P + P + P = hellohellohello
+Objects need to be of the same type for polymorphism to work
+str.method? returns information on how to use the method
+
+
+Sets
+Unordered sets of distinct hashable objects.
+Two types of sets
+1.	A set - mutable
+2.	A frozen set – immutable
+Elements in a set cannot be duplicated. E.g cannot have the same numbers in the set
+ids = set([……….])
+can perform arithmetic operations on multiple sets from each other to create distinct sets.
+& can be used to look at the intersection between 2 sets
+A = set([1, 2, 3])
+B = set([2, 4, 6])
+A & B = {2}
+ 
+
+Dictionaries
+Map key objects to value objects. Keys are immutable, values are mutable.
+Very fast lookups, no ordering of keys. Therefore when looping over dictionaries, looping is done through in an arbitrary order.
+dictionary = {} or dictionary = dict()
+age = {“Tim” : 29, “Jim”: 31,……..}
+to add someone into the dict        age[“Tom”] = 50 
+age[“Tim”] = 29 calling a dict
+can increase the value as follows age[“Tim”] += 1 gives 30
+names =age.keys() 
+To check if something is a key:
+	“Tim” in age = true
+
+Statically typed language – e.g C. Type checking is performed during compiling
+Dynamically typed – Python. Type checking is performed during running
+
+How does the program know the data type in dynamically typed programs?
+Variable names and the values are stored in separate parts of memory and are linked by a pointer. 
+Value created first, then variable, which points to value. Don’t want to lose the value in the computer memory.
+Variables always linked to objects, not other variables. Many separate variables may have pointers to the same object.
+ 
+
+
+For mutable objects, there is an interesting case. Be careful. The pointer to L2 won’t change even if the other object changes its value
+ 
+L1 is L2 = True, because id(L1) == id(L2)
+
+Copy
+Shallow copy – constructs compound object with refs to original object
+Deep Copy – constructs compound object and recursively inserts copies from original object into itself 
+ 
+
+Statements
+Return – returns values from a function
+Import – import modules
+Pass – used as a placeholder
+
+Compound statements – in python, indentation is needed. It determines what the code means.
+
+For loops
+Runs through until all items are iterated through, unless a break command is executed.
+When using a for loop on dictionaries: for x in dictionary.keys(): ….
+Can also do: for x in sorted(dictionary.keys()):………………. This loops over the keys in alphabetical order.
+
+List Comprehensions 
+Applying function to entire list, and returning a new list with function done
+nums = range(10)
+squares = []
+for I in numbers:
+	square =I**2
+	squares.append(square)
+alternatively
+squares2 = [number**2 for number in numbers], returns same thing. Compact.
+
+
+Reading and Writing a File
+Infile =input.txt
+For line in open(infile):
+	Print(line)
+For loops can be used to sequentially load in files
+To strip a new line (\n) from the end of a line:     line.rstrip()
+For line in open(infile):
+	Line = line.rstrip()
+print(line)
+need to assign a new value to line because strings are immutable
+For line in open(infile, “r”):
+	Line = line.rstrip().split(“ ”)
+print(line)
+each line is returned as a list, with each index containing a word
+
+to create a file, line by line
+f = open(“output,txt”, “w”)
+file is opened and is  ready to start writing.
+F.write(“TEXT HERE\n”)
+When done, close the file for writing:
+F.close
+
+
+
+Functions
+def is used to define a function
+def add(a, b):
+	mysum = a+b
+	return mysum
+all names / variables created and assigned in a function are local to the function, and exist only in the function.
+To modify a global variable from within a function, use the global function/command
+
+Common Errors and Mistakes
+Not reading or understanding error messages.
+Know how long lists are. Out of range indexes. Starts sfrom 0
+Dictionaries not ordered by keys inside dictionary.
+Operations on wrong object type. ‘Attribute errors’
+Accessing objexts wrong way. 
+Immutable objects not changeable
+
+
+Scope Rules
+If there are multiple functions or variables, python looks for / defines a variable is as follows:
+LEGB – Local, Enclosing Function, Global, Built In
+Python will modify the first one it finds
+Argument – object passed to a function as input
+Parameter – object in the functions definition
+Remember, when exiting a function, the variables inside the fnction are forgotten. If you want the value to be passed out, you need to stipulate: return X. Mutable objects are an exception as they may be passed out
+
+Classes and Objects – Object Orientated Programming
+CLasses have internal objects (attributes) and associated methods.
+Inheritance – new classes can be define, that inherit the properties of another class of objects
+
+How to create:
+class MyList(list):
+	
+the value in the brackets is the class which it inherits from. In this case, a list
+
+Numpy Arrays
+Numpy is a python module used for scientific computation
+Numpy arrays are n-dimenstional array objects
+Tools for integrating code with C++ and Fortran
+
+Numpy arrays are FIXED. 
+Must be data of same etype. By default data are floats.
+Np.zeros(5) creats an array of size 5 of zeros
+To create a matrix, input should be a tuple with  the specified dimensions
+np.ones creates an array / matrix of ones
+np.empty creates an empty array. However, it contains whatever is in thee computer’s memory at the memory location
+np.array([…].) is the standard method for creating np arrays. Inputs are lists, matricies with a list for each row
+Convention is to label vectors with lower case, and matrices with upper case	
+
+SLICING NP ARRAYS
+In matrix, give two index, index 1 is row, index 2 is column. Can have multiple dimensions. Use : to return entire row / column of matrices. 
+e.g M = [[1,2], [3,4]]
+M[:, 1] = array[2,4]         returns column 1 (indexed from 0)
+Np arrays are added with element wise addition 
+Normal lists are concatenated by addition. Numpy arrays, piecewise addition is performed
+
+NP arrays
+n = np.array[2,4,6,7]
+n > 5 = [False, False, True, True]
+can use arrays and np arrays to index an np.array
+and np arrays to index an np.array
+indexing using 
+ 
+•  In summary, for all cases of indexed arrays, what is returned
+•  is a copy of the original data, not a view as one gets for slices.
+
+
+Building NPArrays
+Linear spaced items: Np.linspace(0,100,10)  - creates an array with elements sbetween 0 and 100 inclusive, with 10 elements.
+Logarithmically spaced Np.logspace(1, 2, 10) – first element is the log of starting element (10 = 1), second is the log of the ending value log10(100)=2, and last item is the num of elements
+
+np.logspace(np.log10(start), np.log10(finish), spacing increment)
+
+array.shape returns  the dimensions of the vector / matric
+notice that there are no parentheses above, this is because they are data attribues, not a method
+a= np.random.random(10)
+np.any(a > 0.9) returns true or false, depending if ANY element fulfils the condition
+np.all(a > 0.1) returns true or false, depending if ALL elements fulfil the condition
+ 
+Matplot Lib
+Plotting library for publication quality graphs and plots
+PyPlot is a module in Matplot, which is useful. 
+
+import matplotlib.pyplot as plt
+
+Because indexing starts from 0, the first item in a list is plotted at x=0.
+In iPython,   ; is used at the end of a plot command to supress matplot jargon that is returned with a plot.
+
+plt.plot([0,1,4,9])
+plt.show()
+
+
+plt.plot([xcords], [ycoords])
+
+keyword arguments
+x = np.linspace(0,10,20)
+y1 = x**2.0
+y2 = x**1.5
+
+plt.plt(x, y1, “bo-“, linewidth=2, markersize=4)
+                 b = blue line, o = circl;e markers, - = solid line
+                 
+
+Customising Plots
+Add a legend: legend(loc=“upper left”)
+Adjust axes: axis([xmin, xmax, ymin, ymax])
+Set axis labels: xlabel(“NAME”), ylabel()   if it is written with “$NAME$”
+Save figure: savefig(“filename.pdf”)  can also save as another file type
+Files are saved in the working directory where python is launched
+
+plt speaks latex. 
+
+Logarithmic Plots
+To plot logarithmically, transform the desired coordinates using the log function
+Default is Log10
+semilogx(…) plots x in log, y on orig scale, semiology(…) plots the y axis as a log
+loglog(…) plots both x and y as logs
+to evenly space points on the x axis, use np.logspace to define the x-coordinates
+
+Generating Histograms
+Np.random.normal(1000), generates a normal distribution of 1000 numbers
+Plt.hist() to generate a histogram
+By default, 10 evenly spaced bins. With auto bin locations
+
+plt.hist(x, normed=True) normed normalises the histogram
+plt.hist(x, normed=True, bins=np.linspace(-5,5,21))   puts 20 bins between -5 and 5. Need 21 points for 20 bins, because each bin needs a start and finish point.
+
+Gamma distribution – probability density function between 0 and +infinity
+plt.subplot(num rows, num columns, plot number)   plot number is the location in which a subplot is placed in a wider figure
+
+Np.random.gamma(2,3,100000)
+
+
+Simulating Randomness
+Randomness is useful for models – abstracting away aspects that aren’t simply modelled in processes that we model. As well as truly random processes too!
+
+Import random
+
+random.choice([….])   random choice from in the list
+picks a value in a list – each value can be a function, a range, a number
+
+
+central limit theorem – sum of a large number of random variables, regardless of distribution, will approximately follow a random distribution
+
+
+law of large numbers - We expect the histogram of a sample to better reflect the distribution as the sample size increases.
+
+
+
+NumPy random Module
+Can generate a range of types of random variables e.g normal dist, gamma dist
+
+np.random.random() generates a random number between 0 and 1
+np.random.random(5) returns a list of random numbers
+np.random.random(5, 2) returns a matrix of 5 rows and 2 columns
+
+np.random.normal(mean, SD)     returns one number from the dist
+np.random.normal(mean, SD, X)    X of array is the number of samples we want to return. Can also use a tuple for X to return a matrix/
+
+
+how to generate an array of random numbers in Numpy
+
+
+np.sum(X) sums matrices
+np.sum(X, axis=1) sums over the columns (along each row, e.g row1col1+row1col2…To sum over the rows use the 0th dimension
+
+NUMPY code can be much faster than standard computation
+
+
+ 
+
+
+Measuring Time 
+How to figure out how much time a piece of code takes to run. The running time.
+
+import time
+time.clock() returns the current time
+
+end time – start time = run time
+
+numpy is much faster.
+
+
+
+
+
+Random Walks
+Molecular movements, modelling how people move, etc
+
+Random direction and distance at various time steps.
+Step taken in random direction for each time step
+
+
+x(t=0) = x0
+x(t=1) = x(t=0) + deltax(t=1)
+.
+.
+X(t=k) = x0 + deltax(t=1)+….+deltax(t=k)
+
+
+np.cumsum(a, axis)
+
+
+
+
+
+Case Study DNA
+1d string of characters, ACGT
+Adenine, Cytosine, Guanine, Thymine
+Each unique sequence of nucleotide triplets corresponds to a unique amino acid, amino acids make up proteins. 
+
+Download DNA Sequence from public repository
+Translate DNA sequence into amino acids
+Download amino acid sequence to check solution
+
+Manually download DNA and protein sequence data
+Import the DNA data into Python
+Creat an Algorithm to translate the DNA
+Check if the translation matches your download
+
+pwd command in ipython retuns the working environment
+Working directory must be the same as where the files you are reading are located
+
+
+string.replace("\n","")  strips line breaks
+string.replace("\r","")
+
+
+
+strings are immutable, therefore the string must be replaced anew
+
+
+when scanning the code:
+1.	Make sure sequence is divisible by 3
+2.	Look up 3 letter strings
+3.	Continue lookups
+
+
+Pseudo code
+	Check len(seq)%3 == 0
+	For each iteration of loop, extract single codon
+		Use string slicing seq[i:i+3]
+	
+	Look up codon & store result
+
+
+
+
+Another way to read files into the memory:
+
+with open(inputfile, “r”) as f:
+	seq = f.read()
+
+
+
+Language Processing
+gutenberg.org – digitalisation project for 
+
+dictionaries are good for keeping track of the counts of individual words
+
+python has a counter tool
+import in collections module. 
+Counter is  much like a dict, but a subclass of it
+
+from collections import counter
+
+
+Reading in a book
+Character encoding – the process by which certain characters are encoded by computer
+Utf-8 is dominant encoding used on the web
+
+string.find(“x”)  finds a target string x within the  original string and returns the index
+ 
+to read multiple files into the memory, 
+import os
+file_dir = “./dir”  just make sure python directory is the same folder in which the file_dir is located
+
+
+Pandas = panel data
+
+Pandas has a dataframe structure
+import pandas as pd
+
+table = pd.DataFrame(columns = ("name", "age"))
+table.loc[1] = "james", 22  #adds new entries into row 1
+in for loops, define a row_num counter to keep track of the rows. It is used in table.loc[row_num] = x, y, z ………..
+
+
+stats.head() and stats.tail() are used to view the top 5 and bottom 5 rows of a table
+
+table.column  -- returns a dataframe of that colum and row numbers
+table.colum == criteria   returns the values from the column that fulfil the criteria
+
+
+
+
+Statistical Learning
+Supervised learning – predict outputs based on input(s) 
+Inputs: predictors, independent variables, features
+Outputs: response variables, dependent variables
+
+Quantitative response: regression
+Qualitative response: classification (categorization)
+
+
+k-Nearest Neighbors (kNN) – assign an unknown observation based on comparing it with k nearest neighbours (known).
+Makes prediction based  on what the majority class of the K nearest neighbours.
+
+
+Find distance
+Find ‘majority vote’ of nearest neightbours
+Statistical Mode = most commonly occurring element in a sequence
+	Very easy and fast to find
+	If there are two numbers, only the smallest is returned 
+
+Dict.items() returns a list of tuples of the key value pairs 
+
+
+Finding kNN
+1.	Loop over all points
+a.	Compute distance between points and target point
+2.	Sort distances & return k nearest points
+
+np – along rows means in direction of rows = downwards
+
+ 
+enumerate allows use to access the index and value of a list together
+
+e.g seasons[“a”, “b”, “c”, “d”]
+
+for ind, season in enumerate(seasons):
+	print(ind, season)
+= 0, “a”
+1, “b”
+2, “c”
+….etc
+
+
+SciKitLearn – python machine learning library
+
+
+Getting Started with Pandas
+Pd is built on np
+
+x = pd.Series([6,3,4,6], index = ["q", "w", "e", "r"])
+Out[7]: 
+q    6
+w    3
+e    4
+r    6
+dtype: int64
+
+
+Series can be created from dictionaries
+pd.series({key:val, key:val……….})
+the key becomes the row index
+
+So can dataframes, the key is a single value, while the values are lists. The key becomes the column, but we need to specify the columns.
+pd.DataFrame(data, columns = [“col1”, “col2”,  “col3”])
+
+Column data can be retrieved by two methods:
+1.	The dictionary like method: df[“colname”]
+2.	The attribute method df.colname
+
+sorted(x.index)
+Out[12]: ['e', 'q', 'r', 'w']
+
+x.reindex(sorted(x.index))
+Out[13]: 
+e    4
+q    6
+r    6
+w    3
+dtype: int64
+
+when we try to add two DFs or series where the indicies don’t add up, an extra row with NaN will be generated. This is due to a mismatch in the indicies
+
+ 
+df.columns returns a list of the column names
+
+df.iloc[:, :] all rows and all columns.
+df.iloc[:, 0:3] all rows, columns 0, 1, 2
+
+df.loc[] uses names of columns or rows, instead of indexes
+
+pearson correlation - how linear the correlation between x and y is. =1 for perfectly linear
+
+
+Creating a correlation matrix:
+corr_dataframe = pd.DataFrame.corr(df)
+
+import matplotlib.pyplot as plt
+plt.figure(figsize=(10,10))
+plt.pcolor(corr_dataframe)
+plt.colorbar()
+plt.savefig("corr_dataframe.pdf")
+
+spectral coclustering - the goal is to find sets of data X that often go with with data Y
+E.g. clustereing of certain jargon words in different scientific papers / documents
+Co-clustering refers to the idea of simultaneously finding clusters  of words and documents, or data X and Data Y.
+adjacency matrix - rows correspond words and cols to documents
+Take adjacency matrix, and find eigenvalues and eigenvectors (meaning of spectral in this context)
+
+python method reorders correlation matrix rows and cols so that clusters can be seen more easily
+
+
+from sklearn.cluster.bicluster import SpectralCoclustering as scc
+model = scc(n_clusters = 6, random_state = 0) #there are 6 regions
+model.fit(corr_whisky)
+output is an array of num row clusters * num rows with boolean values
+Each row identifies a cluster
+each cluster identifies a row
+
+
+
+**SELF STUDY** 
+dropping columns
+df.drop("colname", axis=1) or df.drop(["colname", "col2name"], axis=1)
+
+dropping rows("index")
+df.drop("colname", inplace=True) inplace destroys the data, permenently modifying df
+
+df["colname"] returns columns (you can also provide a list of col names
+df[:2] slices the rows 
+
+
+bools = [True, True, False, True]
+df[bools] = slices to select True columns. Can be thought of as True = Select, False = Leave
+
+df.loc and .iloc are used to select a subset of rows AND columns
+
+**END SELF STUDY**
+
+
+ind = [True, True, False, True]
+~ind = [False, False, True, False]
+~ inverts the boolean values.
+
+
+Pandas has plotting functions that deal well with NaNs, but it isn't as good as plt
+NaNs are dealt with automatically
+
+
+import datetime
+
+datetime.datetime.today() - returns the current timestamp
+
+the difference between two datetime objects is a datetime.timedelta object
+
+datetime can convert timestamps to datetime objects
+
+
+**NETWORK ANALYSIS CASE STUDY**
+
+Network - real world object
+Graph - abstract mathematical representation
+
+Graph - node / vertecies and links / edges
+
+Paths - ways  to get from a node to another. It's length is defined as the number of edges
+(no. nodes - 1)
+
+a graph is connected if there exists a path from a vertex to any other vertex.
+
+If a graph is disconnected, there exists more than one component. Components are groups of connected nodes.
+An disconnected graph has 'islands' of connected nodes.
+A connected component is:
+"A group of nodes and their edges for which a path exists between each node in the component"
+
+Component size = defined by number of nodes inside it.
+
+
+import networkx as nx
+
+G = nx.Graph()
+
+G.add_node(1)
+G.add_nodes_from([2, 3])
+G.add_nodes_from(["u","v"])
+G.add_edge(1,2)
+G.add_edge("u", "v")
+G.add_edges_from([(1,3), (1,4), (1,5), (1,6)]) #if nodes have not yet been defined, python automatically adds them in
+G.add_edge("u", "w")
+
+
+networkx contains random graph generators and some empirical datasets
+
+
+networkx not good at plotting networks, use matplotlib.pyplot instead
+
+Networkx stores the degrees of nodes (connectivity) in a dictionary where the keys are node IDs and the values are their associated degrees.
+
+G.degree()  returns the dictionary with the degrees
+
+G.degree()["key"] looks up as a dict
+G.degree("key")  looks up as a function
+BUT
+G.degree(0) is G.degree()[0]    returns True
+
+
+There are different random graph models
+
+Erdos Renyi (ER) model is most basic random model
+N = num nodes
+p = probability that a pair of nodes  will be connected
+
+structure of connections in network, represnted by adjacency matrix, N*N matrix.
+each cell represents a connection between two nodes. =1 if there is a connection, else =0
+Symmetric, meaning i,j == j,i
+
+in most networks, most are part of a single connected component. That is there exists a single connected path between them
+
+often a single components contains 90%+ of a network
+
+For an iterator object X, what does X.__next__() do? It returns the next value in X, if it exists 
+
+
+
+
+**Statistical Learning**
+Stat Learning are tools for understanding data
+
+supervised learning - collection techniques and algorithms, that when given example inputs and example outputs, learn to associate inputs with outputs
+Outputs are provided by a supervisor - usually a human
+
+Unsupervised learning - collection techniques and algorithms, that when given only and input, learn relationships and structure
+
+
+in this CASE STUDY we cover only Supervised learning. We will cover:
+Regression - continuous outputs. Quantitative outcome
+Classification - categorical outputs. Qualitative outcome
+
+Continuous variables can be converted to categorical variables by specifying cutoff values to bucket the data
+
+results based on the 
+
+Statistical decision theory - beyond scope of course. but basics:
+1. Regression setting - squared error loss, the ebest Y to predict for a given X. Take average of Y for a given X
+2. 0-1 Loss function - best classifiaction of a given X is obtained by classifying an observation of the class that has the highest conditional probability, then assign observation to class
+
+Least squares loss is used to estimate the expected value of outputs, whereas 0−1 loss is used to estimate the probability of outputs. 
+
+Linear Regression - predicting Y from X using a linear relationship between the variables
+
+Y= bo + b1*x + epsilon
+epsilon = noise
+
+y_predict = bo_est + b1_est*x
+
+bo_est and b1_est are estiamtes based on observed data.
+
+consider data with n observations of (x1, y1),...
+
+ei = yi yi_predictied
+
+Residual sum of squares, RSS = e1**2+...en**2
+
+Least squares method - find vaue of slope that has the smallest value of RSS
+
+std errors - 
+sampling distribution of sample estimates
+st.dev = std. error
+
+rss < tss
+R**2 = (RSS - TSS)/ RSS
+
+Multiple Lin Regress
+Predict  Y using many Xs
+Y=Bo + B1*X1 + B2*X2....Bn*Xn +  error      X denots a rendom variable
+
+need to be careful with interpretation of model results as two Xs can, in reality, be interdependent
+
+
+Assessing model accuraccy
+Regression models - Test Mean Squared Error It is the deviation between the predicted value and the actual Y of the test data 1/n*sum(y(xi)-y_predict(xi)**2
+
+Classification model - Test error rate the fraction of times test data is classified correctly by the model
+
+overfitted data will perform worse on test data. this is because the model will just learn patterns from noise in training data
+
+
+
+Test data is used for evaluating how our model fits on unseen data, we can see how generalizable it is. 
+
+
+Logistic Regression - binary classifier two categories, but can take multiple inputs. But there are only two outcomes
+model conditional probability that object belongs to a certain category, conditional based on its category
+Outcome is always either 0 or 1
+logistic regression is a linear model that models probabilities on a non-linear scale
+Can be extended for multiple predictos - multiple logistic regression
+
+
+odds: p(happen)/p(not happen) = p(happen)/(1-p(happen))
+
+log of odds, vary from -inf to +inf
+
+logit func = beta0 +beta1*x1 + beta2*x2 ...
+
+betas are estimated using method of maxumum likelihoods. This method estimates parameters to make the outcomes of the training data maximally likely
+
+
+Random forest is a method for regression and classification
+Tree based methods are simpler versions. Random forrest makes use of many trees when making a decision, a collection of trees is a forest. 
+Trees in forest are randomised
+
+Tree based methods involve dividing the predictor space into separate regions, so that data within each region are as similar as possible.
+Divisions are made until it is no longer possible
+
+Regression setting - return the mean of a region
+Classification setting - return mode of a region (most commonly occuring value)
+
+Predictor space is split by lines. Lines must align with axes of predictor space. Divisions are therefore rectangles.
+This contraint gives us rules.
+
+Loss function:
+in regression - RSS
+in classification  function - gini index and cross entropy
+
+Random Forest Predictions:
+aggregate multiple trees
+combine predictions from multiple trees
+
+in regression, use mean of individual tree predictions
+in classifiation, use mode of individual tree predictions
+
+Randomness must be introduced into each decision tree.
+First - randomness in the data, introduced by bootstrapping. Gives each tree is fit to different data set
+    - Bagging - boot strap aggregation, bagging. Repetaed drawing of samples with replacement from training set
+    - draw a number of bootstrap data sets, and fit each to a tree
+
+second - randomness in the predictor, introduced by splitting of data and using only a subset of predictors.
+       - in each tree, separate identify where the test observation falls, based on this, each tree maakes a prediction
+
+
+BOTH STEPS HAVE IMPLICATION OF DECORRELATING TREES TO GIVE more accurate result
+
+Based on the predictions of each separate tree, the prediction of the forest is predicted.
